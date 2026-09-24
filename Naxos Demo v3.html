@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Naxos - Griechisches Restaurant in Gau-Bischofsheim. Authentische griechische Familienküche, ausgezeichnet mit 4.6 Sternen. Jetzt Tisch reservieren.">
+<title>Naxos | Griechisches Restaurant in Gau-Bischofsheim</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --accent: #f1c40f;
+    --dark: #17202a;
+    --light: #f9f6f0;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Georgia', serif; color: var(--dark); background: var(--light); line-height:1.6; }
+  header { position: fixed; top:0; width:100%; background: rgba(23,32,42,0.96); z-index:1000; }
+  nav { display:flex; justify-content:space-between; align-items:center; padding: 1rem 5%; }
+  nav .logo { color: var(--accent); font-size:1.5rem; font-weight:bold; letter-spacing:1px; }
+  nav ul { list-style:none; display:flex; gap:1.8rem; flex-wrap:wrap; }
+  nav ul li a { color: #fff; text-decoration:none; font-size:0.9rem; transition:color .3s; }
+  nav ul li a:hover { color: var(--accent); }
+  nav .menu-btn-mobile { display:none; background: var(--accent); color: var(--dark); padding:0.5rem 1rem; border-radius:20px; text-decoration:none; font-size:0.85rem; font-weight:bold; }
+
+  .hero { min-height:65vh; display:flex; align-items:center; justify-content:center; text-align:center; color:#fff;
+    background: linear-gradient(135deg, var(--primary), var(--dark)); padding-top:110px; padding-bottom:2rem; }
+  .hero h1 { font-size:3rem; margin-bottom:1rem; letter-spacing:2px; }
+  .hero p { font-size:1.2rem; margin-bottom:1.5rem; font-style:italic; }
+  .rating-badge { background: var(--accent); color: var(--dark); padding:0.5rem 1.2rem; border-radius:20px; font-weight:bold; display:inline-block; margin-bottom:1.5rem; }
+  .cta-row { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1rem; }
+  .btn { display:inline-block; padding:1rem 1.8rem; border-radius:8px; font-size:1.05rem; font-weight:bold; text-decoration:none; transition:transform .2s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--accent); color: var(--dark); }
+  .btn-outline { background: transparent; color:#fff; border:2px solid #fff; }
+
+  section { padding: 4rem 8%; }
+  .section-title { text-align:center; margin-bottom:2.5rem; }
+  .section-title h2 { font-size:2.2rem; color: var(--primary); position:relative; display:inline-block; }
+  .section-title h2::after { content:''; display:block; width:60px; height:3px; background: var(--accent); margin:0.7rem auto 0; }
+  .about { display:flex; gap:3rem; align-items:center; flex-wrap:wrap; background:#fff; }
+  .photo-placeholder { flex:1; min-width:280px; height:300px; border-radius:6px; background: repeating-linear-gradient(45deg, #eee, #eee 10px, #f7f7f7 10px, #f7f7f7 20px);
+    display:flex; align-items:center; justify-content:center; color:#999; font-size:0.9rem; text-align:center; padding:1rem; border:2px dashed #ccc; }
+  .about-text { flex:1; min-width:280px; }
+  .highlight-box { background: var(--primary); color:#fff; padding:0.9rem 1.4rem; border-radius:6px; margin-top:1.2rem; display:inline-block; }
+  .info { background: var(--dark); color:#fff; }
+  .info-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap:2rem; text-align:center; }
+  .info-grid h3 { color: var(--accent); margin-bottom:1rem; }
+  .phone-highlight { font-size:1.8rem; color: var(--accent); font-weight:bold; }
+  .phone-highlight a { color: var(--accent); text-decoration:none; }
+  .maps-link { display:inline-block; margin-top:0.7rem; color: var(--accent); font-size:0.85rem; text-decoration:underline; }
+
+  .menu-nav { position:sticky; top:64px; background:#fff; z-index:900; display:flex; overflow-x:auto; gap:0.5rem; padding:0.8rem 5%; box-shadow:0 2px 6px rgba(0,0,0,0.08); scrollbar-width:thin; }
+  .menu-nav a { flex-shrink:0; background: var(--light); color: var(--primary); padding:0.5rem 1.1rem; border-radius:20px; text-decoration:none; font-size:0.85rem; border:1px solid #ddd; white-space:nowrap; font-weight:bold; }
+  .menu-nav a:hover, .menu-nav a.active { background: var(--primary); color:#fff; }
+
+  .menu-notice { background:#fff3cd; border:1px solid #ffe69c; color:#664d03; padding:1rem 1.5rem; border-radius:8px; max-width:700px; margin:0 auto 2.5rem; text-align:center; font-size:0.9rem; }
+  .menu-category { max-width:900px; margin:0 auto 3rem; scroll-margin-top:150px; }
+  .menu-category h3 { color: var(--primary); font-size:1.5rem; margin-bottom:1rem; border-bottom:2px solid var(--accent); padding-bottom:0.4rem; }
+  .dish { display:flex; justify-content:space-between; align-items:baseline; padding:0.7rem 0; border-bottom:1px dashed #ddd; gap:1rem; }
+  .dish-name { flex:1; }
+  .dish-desc { color:#777; font-size:0.85rem; display:block; margin-top:0.15rem; }
+  .dish-price { font-weight:bold; color: var(--primary); white-space:nowrap; }
+
+  .gallery { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
+  .gallery .photo-placeholder { height:200px; min-width:unset; }
+
+  .call-section { background: var(--primary); color:#fff; text-align:center; }
+  .call-section .phone-big { font-size:2.5rem; font-weight:bold; color: var(--accent); }
+  .call-section .phone-big a { color: var(--accent); text-decoration:none; }
+
+  .reviews { background:#fff; }
+  .review-card { background: var(--light); border-radius:8px; padding:1.5rem; max-width:700px; margin:0 auto 1.5rem; font-style:italic; color:#555; }
+  .review-card .stars { color: var(--accent); font-size:1.1rem; margin-bottom:0.5rem; }
+
+  .sticky-call { position:fixed; bottom:1.2rem; right:1.2rem; background: var(--accent); color: var(--dark); width:60px; height:60px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:1.6rem; text-decoration:none; box-shadow:0 4px 14px rgba(0,0,0,0.3); z-index:950; }
+
+  footer { background: var(--dark); color:#aaa; text-align:center; padding:2rem; font-size:0.85rem; }
+  footer a { color: var(--accent); text-decoration:none; }
+
+  @media (max-width:768px){
+    nav ul { display:none; }
+    nav .menu-btn-mobile { display:inline-block; }
+    .hero h1 { font-size:2.1rem; }
+    .dish { flex-direction:column; align-items:flex-start; }
+    .cta-row { flex-direction:column; align-items:center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Naxos</div>
+    <ul>
+      <li><a href="#about">Über uns</a></li>
+      <li><a href="#menu-top">Speisekarte</a></li>
+      <li><a href="#reviews">Bewertungen</a></li>
+      <li><a href="#info">Öffnungszeiten</a></li>
+      <li><a href="#call">Anrufen</a></li>
+    </ul>
+    <a href="#menu-top" class="menu-btn-mobile">🍽️ Speisekarte</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Naxos</h1>
+    <p>Griechisches Restaurant in Gau-Bischofsheim</p>
+    <div class="rating-badge">⭐ 4.6 / 5 · über 1.400 Bewertungen</div>
+    <div class="cta-row">
+      <a href="#menu-top" class="btn btn-primary">🍽️ Zur Speisekarte</a>
+      <a href="tel:+4961357019404" class="btn btn-outline">📞 06135 7019404</a>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="photo-placeholder">📷<br>Hier kommt ein echtes Foto vom Restaurant hin<br>(z.B. Außenbereich oder Gastraum)</div>
+  <div class="about-text">
+    <h2 style="color:var(--primary); margin-bottom:1rem;">Griechische Gastfreundschaft</h2>
+    <p>Bei Naxos erwartet Sie echte griechische Familienküche mit viel Liebe zum Detail. Gäste loben besonders die zarten Fleischgerichte, die familiäre Atmosphäre und den aufmerksamen, freundlichen Service.</p>
+    <div class="highlight-box">🇬🇷 Authentische griechische Spezialitäten mitten in Rheinhessen</div>
+    <p style="margin-top:1rem;">Ob spontanes Essen unter der Woche oder Feier am Wochenende – am Wochenende empfiehlt sich eine Reservierung.</p>
+  </div>
+</section>
+
+<section id="menu-top" style="padding-bottom:0;">
+  <div class="section-title"><h2>Unsere Speisekarte</h2></div>
+</section>
+
+<div class="menu-nav">
+  <a href="#vorspeisen">Vorspeisen</a>
+  <a href="#hauptgerichte">Hauptgerichte</a>
+  <a href="#desserts">Desserts</a>
+</div>
+
+<section style="padding-top:2rem;">
+  <div class="menu-notice">Dies ist eine Beispiel-Speisekarte.</div>
+
+  <div class="menu-category" id="vorspeisen">
+    <h3>Vorspeisen (Beispiel)</h3>
+    <div class="dish"><div class="dish-name">Tzatziki <span class="dish-desc">Hausgemacht mit frischem Knoblauch und Gurke</span></div><div class="dish-price">4,50 €</div></div>
+    <div class="dish"><div class="dish-name">Gigantes <span class="dish-desc">Griechische Riesenbohnen in Tomatensauce</span></div><div class="dish-price">5,50 €</div></div>
+    <div class="dish"><div class="dish-name">Saganaki <span class="dish-desc">Gebratener Kefalotyri-Käse</span></div><div class="dish-price">6,00 €</div></div>
+  </div>
+
+  <div class="menu-category" id="hauptgerichte">
+    <h3>Hauptgerichte (Beispiel)</h3>
+    <div class="dish"><div class="dish-name">Gyros Teller <span class="dish-desc">Mit Pommes, Salat und Tzatziki</span></div><div class="dish-price">13,50 €</div></div>
+    <div class="dish"><div class="dish-name">Souvlaki <span class="dish-desc">Gegrillte Fleischspieße mit Beilage</span></div><div class="dish-price">14,00 €</div></div>
+    <div class="dish"><div class="dish-name">Moussaka <span class="dish-desc">Auflauf mit Aubergine und Hackfleisch</span></div><div class="dish-price">13,00 €</div></div>
+  </div>
+
+  <div class="menu-category" id="desserts">
+    <h3>Desserts (Beispiel)</h3>
+    <div class="dish"><div class="dish-name">Baklava <span class="dish-desc">Mit Honig und Walnüssen</span></div><div class="dish-price">4,50 €</div></div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="section-title" style="grid-column:1/-1;"><h2>Impressionen</h2></div>
+  <div class="photo-placeholder">📷<br>Foto vom Außenbereich</div>
+  <div class="photo-placeholder">📷<br>Foto vom Gastraum</div>
+  <div class="photo-placeholder">📷<br>Foto eines Gerichts</div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="section-title"><h2>Was Gäste sagen</h2></div>
+  <div class="review-card">
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+    "Wirklich eine wunderbare griechische Familie, die das Restaurant betreibt. Großartige Kunst der Fleischzubereitung. Super zart und gut gewürzt. Sehr familiäre und angenehme Atmosphäre."
+  </div>
+  <div class="review-card">
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+    "Sehr gutes Essen. Preis-Leistungs-Verhältnis sehr gut. Aufmerksamer und freundlicher Service."
+  </div>
+</section>
+
+<section class="info" id="info">
+  <div class="section-title"><h2 style="color:var(--accent);">Öffnungszeiten & Standort</h2></div>
+  <div class="info-grid">
+    <div>
+      <h3>Öffnungszeiten</h3>
+      <p>Bitte telefonisch erfragen<br><span style="font-size:0.85rem; opacity:0.8;">(am Wochenende Reservierung empfohlen)</span></p>
+    </div>
+    <div>
+      <h3>Adresse</h3>
+      <p>Am Sportplatz 2<br>55296 Gau-Bischofsheim</p>
+      <a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Am+Sportplatz+2+55296+Gau-Bischofsheim" target="_blank">📍 Route in Google Maps öffnen</a>
+    </div>
+    <div>
+      <h3>Kontakt</h3>
+      <p class="phone-highlight"><a href="tel:+4961357019404">06135 7019404</a></p>
+      <p><a href="mailto:restaurantnaxos2020@gmail.com" style="color:#fff;">restaurantnaxos2020@gmail.com</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="call-section" id="call">
+  <div class="section-title"><h2 style="color:#fff;">Tisch reservieren</h2></div>
+  <p style="margin-bottom:1rem;">Für Reservierungen und Fragen rufen Sie uns bitte direkt an:</p>
+  <div class="phone-big"><a href="tel:+4961357019404">📞 06135 7019404</a></div>
+</section>
+
+<a href="tel:+4961357019404" class="sticky-call" aria-label="Jetzt anrufen">📞</a>
+
+<footer>
+  <p>&copy; 2026 Naxos | Am Sportplatz 2, 55296 Gau-Bischofsheim | <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
+</footer>
+
+</body>
+</html>
